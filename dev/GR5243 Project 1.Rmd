@@ -17,7 +17,7 @@ The *American National Election Studies* (ANES) are surveys of voters in the U.S
 # 2. Explorary Data Analysis
 
 ### Import R packages for later use
-```{r, echo=FALSE}
+```{r}
 
 library(usethis)
 library(tidyverse)
@@ -32,7 +32,7 @@ library(stringr)
 ```
 
 ### Import raw ANES data
-```{r, echo=FALSE}
+```{r}
 
 anes_ts_cdf <- read_sav("D:/Columbia University/GR 5243/Project 1/Fall2020-Project1-zlj-0131/data/anes_timeseries_cdf.sav")
 
@@ -47,7 +47,7 @@ For this project, I would start from the question of is there a relationship bet
 
 Data process for Question 1 (Religious background - Vote Party): 
 
-```{r, echo=FALSE}
+```{r}
 
 Election_years = as.character(seq(1952, 2016, 4))
 
@@ -75,7 +75,7 @@ I am also interested in the relationship between Voters' education background an
 
 Data process for Question 2 (Education Background - Vote Party): 
 
-```{r, echo=FALSE}
+```{r}
 
 Q2_data <- anes_ts_cdf %>%
   mutate(
@@ -101,7 +101,7 @@ I am also interested in the relationship between Voters' occupation and the part
 
 Data process for Question 3 (Occupations - Vote Party): 
 
-```{r, echo=FALSE}
+```{r}
 
 Q3_data <- anes_ts_cdf %>%
   mutate(
@@ -125,7 +125,7 @@ save(Q3_data, file = "../output/data_use.RData")
 
 Data process for new derivative question:
 
-```{r, echo=FALSE}
+```{r}
 
 newQ_data <- anes_ts_cdf %>%
   mutate(
@@ -153,7 +153,7 @@ save(newQ_data, file = "../output/data_use.RData")
 
 ### Q1: Is there a relationship between voters' religious background and the party they would like to vote?
 
-```{r, echo=FALSE}
+```{r}
 
 load(file = "../output/data_use.RData")
 Q1_plotdata <- Q1_data %>%
@@ -181,7 +181,7 @@ ggplot(Q1_plotdata,
 By ignoring the fourth category of other and none, we focus on the three major regions in States. It is hard to find a trend in Jewish, but we could see in most of the time, the majority of voters who are Jewish are with the Democrat. Also, we would find a clearly upward trend of the proportions of voters who are Protestant or Catholic voting to Republican are increasing during the most three recent elections. Let us take a closer look of the line charts of the votes.
 
 
-```{r, echo=FALSE}
+```{r}
 
 ggplot(Q1_plotdata %>% 
          filter(vote == "2. Republican") %>%
@@ -202,7 +202,7 @@ Let us put this interesting finding aside for a moment, because I am also intere
 
 ### Q2: Is there a relationship between voters' education background and the party they would like to vote?
 
-```{r, echo=FALSE}
+```{r}
 
 Q2_plotdata <- Q2_data %>%
   filter(!(str_detect(education, "NA"))) %>%
@@ -228,7 +228,7 @@ ggplot(Q2_plotdata,
 
 By viewing the bar chart above, we cannot find a significant trend for education level under college or advanced degree. However, there is a obvious trend for the college or advanced degree, and this group of people are more and more likely to vote for the Democrat. Also, let us take a close look at the vote result in the most three recent elections.
 
-```{r, echo=FALSE}
+```{r}
 
 ggplot(Q2_plotdata %>% 
          filter(vote == "2. Republican") %>%
@@ -248,7 +248,7 @@ According to the line plot above, we can clearly see a upward trend of the propo
 
 The similar upward trends of the support rating for Republican from people with weaker education background and people who are Protestant or Catholic make me wondering if there exist any correlation between these two group of people. 
 
-```{r, echo=FALSE}
+```{r}
 
 newQ_plotdata <- newQ_data %>%
   filter(!(str_detect(education, "NA"))) %>%
@@ -277,7 +277,7 @@ ggplot(newQ_plotdata,
 
 Let's take a closer look of the line chart.
 
-```{r, echo=FALSE}
+```{r}
 
 ggplot(newQ_plotdata %>%
          filter(religion %in% c("1. Protestant", "2. Catholic [Roman Catholic]")),
@@ -298,7 +298,7 @@ There is no obvious relationship between voters being Catholic and education, bu
 
 ### Q3: Is there a relationship between voters' occupation and the party they would like to vote?
 
-```{r, echo=FALSE}
+```{r}
 
 Q3_plotdata <- Q3_data %>%
   filter(!(str_detect(occupation, "NA"))) %>%
@@ -324,7 +324,7 @@ ggplot(Q3_plotdata,
 
 By looking at the graph above, I find something interesting about the voters who are Laborers, who I expect having weaker educational background. In the previous finding, we know that people who have weaker educational background are tend to vote for Republican. Nevertheless, in this chart, Laborers are highly inclined to vote for Democrat. To validate my assumption of laborers having weaker educational background, let us construct another graph. 
 
-```{r, echo=FALSE}
+```{r}
 
 newQ_plotdata_2 <- newQ_data %>%
   filter(!(str_detect(education, "NA"))) %>%
