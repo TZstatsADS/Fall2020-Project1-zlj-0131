@@ -1,0 +1,826 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={GR5243 Project 1},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{GR5243 Project 1}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+This is an \href{http://rmarkdown.rstudio.com}{R Markdown} Notebook.
+
+\hypertarget{introduction}{%
+\section{1. Introduction}\label{introduction}}
+
+The \emph{American National Election Studies} (ANES) are surveys of
+voters in the U.S. on the national scale. For each presidential election
+since 1948, ANES collects responses from respondents both before and
+after the election. The goal of ANES is to understand political
+behaviors using systematic surveys. ANES's data and results have been
+routinely used by news outlets, election campaigns and political
+researchers.
+
+\hypertarget{explorary-data-analysis}{%
+\section{2. Explorary Data Analysis}\label{explorary-data-analysis}}
+
+\hypertarget{import-r-packages-for-later-use}{%
+\subsubsection{Import R packages for later
+use}\label{import-r-packages-for-later-use}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(usethis)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages ------------------------------------------------------------------------------------------ tidyverse 1.3.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts --------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(haven)}
+\KeywordTok{library}\NormalTok{(devtools)}
+\KeywordTok{library}\NormalTok{(RColorBrewer)}
+\KeywordTok{library}\NormalTok{(DT)}
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(data.table)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'data.table'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:dplyr':
+## 
+##     between, first, last
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:purrr':
+## 
+##     transpose
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(stringr)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{import-raw-anes-data}{%
+\subsubsection{Import raw ANES data}\label{import-raw-anes-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{anes_pilot_}\DecValTok{2016}\NormalTok{ <-}\StringTok{ }\KeywordTok{read_sav}\NormalTok{(}\StringTok{"D:/Columbia University/GR 5243/Project 1/Fall2020-Project1-zlj-0131/data/anes_pilot_2016.sav"}\NormalTok{)}
+\NormalTok{anes_pilot_}\DecValTok{2020}\NormalTok{ <-}\StringTok{ }\KeywordTok{read_sav}\NormalTok{(}\StringTok{"D:/Columbia University/GR 5243/Project 1/Fall2020-Project1-zlj-0131/data/anes_pilot_2020ets_sav.SAV"}\NormalTok{)}
+\NormalTok{anes_ts_cdf <-}\StringTok{ }\KeywordTok{read_sav}\NormalTok{(}\StringTok{"D:/Columbia University/GR 5243/Project 1/Fall2020-Project1-zlj-0131/data/anes_timeseries_cdf.sav"}\NormalTok{)}
+\NormalTok{anes_ts_}\DecValTok{2016}\NormalTok{ <-}\StringTok{ }\KeywordTok{read_sav}\NormalTok{(}\StringTok{"D:/Columbia University/GR 5243/Project 1/Fall2020-Project1-zlj-0131/data/anes_timeseries_2016.sav"}\NormalTok{)}
+
+\CommentTok{# Take a look at the data sets}
+\KeywordTok{head}\NormalTok{(anes_pilot_}\DecValTok{2016}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 594
+##   version caseid weight weight_spss  follow turnout12 turnout12b   vote12
+##   <chr>    <dbl>  <dbl>       <dbl> <dbl+l> <dbl+lbl>  <dbl+lbl> <dbl+lb>
+## 1 ANES 2~      1  0.951       0.542 1 [Mos~ 1 [Defin~         NA  2 [Bar~
+## 2 ANES 2~      2  2.67        1.52  2 [Som~ 2 [Defin~         NA NA      
+## 3 ANES 2~      3  1.43        0.815 1 [Mos~ 1 [Defin~         NA  1 [Mit~
+## 4 ANES 2~      4  0.914       0.521 1 [Mos~ 1 [Defin~         NA  2 [Bar~
+## 5 ANES 2~      5  0.264       0.150 1 [Mos~ 1 [Defin~         NA  1 [Mit~
+## 6 ANES 2~      6  1.46        0.834 1 [Mos~ 1 [Defin~         NA  3 [Som~
+## # ... with 586 more variables: percent16 <dbl+lbl>, meet <dbl+lbl>,
+## #   givefut <dbl+lbl>, info <dbl+lbl>, march <dbl+lbl>, sign <dbl+lbl>,
+## #   give12mo <dbl+lbl>, compromise <dbl+lbl>, ftobama <dbl+lbl>,
+## #   ftblack <dbl+lbl>, ftwhite <dbl+lbl>, fthisp <dbl+lbl>, ftgay <dbl+lbl>,
+## #   ftjeb <dbl+lbl>, fttrump <dbl+lbl>, ftcarson <dbl+lbl>, fthrc <dbl+lbl>,
+## #   ftrubio <dbl+lbl>, ftcruz <dbl+lbl>, ftsanders <dbl+lbl>,
+## #   ftfiorina <dbl+lbl>, ftpolice <dbl+lbl>, ftfem <dbl+lbl>,
+## #   fttrans <dbl+lbl>, ftmuslim <dbl+lbl>, ftsci <dbl+lbl>, reg <dbl+lbl>,
+## #   demcand <dbl+lbl>, repcand <dbl+lbl>, vote16jb <dbl+lbl>,
+## #   vote16bc <dbl+lbl>, vote16tc <dbl+lbl>, vote16mr <dbl+lbl>,
+## #   vote16dt <dbl+lbl>, presjob <dbl+lbl>, lazyb <dbl+lbl>, lazyw <dbl+lbl>,
+## #   lazyh <dbl+lbl>, lazym <dbl+lbl>, violentb <dbl+lbl>, violentw <dbl+lbl>,
+## #   violenth <dbl+lbl>, violentm <dbl+lbl>, econnow <dbl+lbl>,
+## #   econ12mo <dbl+lbl>, pid1d <dbl+lbl>, pid2d <chr>, pid1r <dbl+lbl>,
+## #   pid2r <chr>, pidstr <dbl+lbl>, pidlean <dbl+lbl>, lcself <dbl+lbl>,
+## #   lcd <dbl+lbl>, lcr <dbl+lbl>, lchc <dbl+lbl>, lcbo <dbl+lbl>,
+## #   lcdt <dbl+lbl>, lcmr <dbl+lbl>, lctc <dbl+lbl>, ISSUES_OC14_1 <dbl+lbl>,
+## #   ISSUES_OC14_2 <dbl+lbl>, ISSUES_OC14_3 <dbl+lbl>, ISSUES_OC14_4 <dbl+lbl>,
+## #   ISSUES_OC14_5 <dbl+lbl>, ISSUES_OC14_6 <dbl+lbl>, ISSUES_OC14_7 <dbl+lbl>,
+## #   ISSUES_OC14_8 <dbl+lbl>, ISSUES_OC14_9 <dbl+lbl>, ISSUES_OC14_10 <dbl+lbl>,
+## #   ISSUES_OC14_11 <dbl+lbl>, ISSUES_OC14_12 <dbl+lbl>,
+## #   ISSUES_OC14_13 <dbl+lbl>, ISSUES_OC14_14 <dbl+lbl>,
+## #   ISSUES_OC14_15 <dbl+lbl>, ISSUES_OC14_16 <dbl+lbl>,
+## #   ISSUES_OC14_17 <dbl+lbl>, ISSUES_OC14_18 <dbl+lbl>,
+## #   ISSUES_OC14_19 <dbl+lbl>, ISSUES_OC14_20 <dbl+lbl>,
+## #   ISSUES_OC14_21 <dbl+lbl>, best1 <dbl+lbl>, best2 <dbl+lbl>,
+## #   best3 <dbl+lbl>, best4 <dbl+lbl>, disc_b <dbl+lbl>, disc_h <dbl+lbl>,
+## #   disc_w <dbl+lbl>, disc_g <dbl+lbl>, disc_wo <dbl+lbl>, disc_m <dbl+lbl>,
+## #   disc_t <dbl+lbl>, disc_mu <dbl+lbl>, disc_c <dbl+lbl>,
+## #   disc_selfsex <dbl+lbl>, disc_fed <dbl+lbl>, disc_police <dbl+lbl>,
+## #   srv_spend <dbl+lbl>, campfin <dbl+lbl>, immig_legal <dbl+lbl>,
+## #   immig_numb <dbl+lbl>, ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(anes_pilot_}\DecValTok{2020}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 470
+##      V1 StartDate EndDate  v_v1 RecordedDate ResponseId qmetadata_Brows~
+##   <dbl> <chr>     <chr>   <dbl> <chr>        <chr>      <chr>           
+## 1  1451 4/12/202~ 4/12/2~  1131 4/12/2020 1~ R_3oBJppI~ Chrome          
+## 2  2875 4/16/202~ 4/16/2~  3170 4/16/2020 1~ R_1jdLlxo~ Firefox         
+## 3   859 4/17/202~ 4/17/2~  3490 4/17/2020 2~ R_ClTXw6W~ Chrome          
+## 4  2031 4/16/202~ 4/16/2~  3885 4/16/2020 1~ R_3sjr4ze~ Chrome          
+## 5   587 4/16/202~ 4/16/2~  2330 4/16/2020 1~ R_21H8jh0~ Chrome          
+## 6   183 4/14/202~ 4/14/2~  1435 4/14/2020 1~ R_25A8BQN~ Chrome          
+## # ... with 463 more variables: qmetadata_Version <chr>, v_v2 <chr>,
+## #   qmetadata_Resolution <chr>, follow <dbl+lbl>, reg1 <dbl+lbl>,
+## #   votemail1a <dbl+lbl>, votemail1b <dbl+lbl>, votecount <dbl+lbl>,
+## #   votemail2 <dbl+lbl>, voterid1 <dbl+lbl>, voterid2 <dbl+lbl>,
+## #   turnout16a <dbl+lbl>, turnout16a1 <dbl+lbl>, turnout16b <dbl+lbl>,
+## #   vote16 <dbl+lbl>, hopeful <dbl+lbl>, afraid <dbl+lbl>, outraged <dbl+lbl>,
+## #   angry <dbl+lbl>, happy <dbl+lbl>, worried <dbl+lbl>, proud <dbl+lbl>,
+## #   irritated <dbl+lbl>, nervous <dbl+lbl>, meeting <dbl+lbl>,
+## #   moneyorg <dbl+lbl>, protest <dbl+lbl>, online <dbl+lbl>,
+## #   persuade <dbl+lbl>, button <dbl+lbl>, moneycand <dbl+lbl>,
+## #   argument <dbl+lbl>, particip_none <dbl+lbl>, talk1 <dbl+lbl>,
+## #   talk2 <dbl+lbl>, talk3 <dbl+lbl>, fttrump1 <dbl+lbl>, ftobama1 <dbl+lbl>,
+## #   ftbiden1 <dbl+lbl>, ftwarren1 <dbl+lbl>, ftsanders1 <dbl+lbl>,
+## #   ftbuttigieg1 <dbl+lbl>, ftharris1 <dbl+lbl>, ftklobuchar1 <dbl+lbl>,
+## #   ftpence1 <dbl+lbl>, ftyang1 <dbl+lbl>, ftpelosi1 <dbl+lbl>,
+## #   ftrubio1 <dbl+lbl>, ftocasioc1 <dbl+lbl>, fthaley1 <dbl+lbl>,
+## #   ftthomas1 <dbl+lbl>, ftfauci1 <dbl+lbl>, ftblack <dbl+lbl>,
+## #   ftwhite <dbl+lbl>, fthisp <dbl+lbl>, ftasian <dbl+lbl>,
+## #   ftillegal <dbl+lbl>, ftfeminists <dbl+lbl>, ftmetoo <dbl+lbl>,
+## #   fttransppl <dbl+lbl>, ftsocialists <dbl+lbl>, ftcapitalists <dbl+lbl>,
+## #   ftbigbusiness <dbl+lbl>, ftlaborunions <dbl+lbl>,
+## #   ftrepublicanparty <dbl+lbl>, ftdemocraticparty <dbl+lbl>,
+## #   primaryvote <dbl+lbl>, vote20jb <dbl+lbl>, vote20bs <dbl+lbl>,
+## #   cvote2020 <dbl+lbl>, apppres7 <dbl+lbl>, frnpres7 <dbl+lbl>,
+## #   immpres7 <dbl+lbl>, econpres7 <dbl+lbl>, covidpres7 <dbl+lbl>,
+## #   healthcarepres7 <dbl+lbl>, check <dbl+lbl>, dtleader1 <dbl+lbl>,
+## #   dtleader2 <dbl+lbl>, dtcares <dbl+lbl>, dtdignif <dbl+lbl>,
+## #   dthonest <dbl+lbl>, dtauth <dbl+lbl>, dtdiv <dbl+lbl>, dtknow <dbl+lbl>,
+## #   jbleader1 <dbl+lbl>, jbleader2 <dbl+lbl>, jbcares <dbl+lbl>,
+## #   jbdignif <dbl+lbl>, jbhonest <dbl+lbl>, jbauth <dbl+lbl>, jbdiv <dbl+lbl>,
+## #   jbknow <dbl+lbl>, bsleader1 <dbl+lbl>, bsleader2 <dbl+lbl>,
+## #   bscares <dbl+lbl>, bsdignif <dbl+lbl>, bshonest <dbl+lbl>,
+## #   bsauth <dbl+lbl>, bsdiv <dbl+lbl>, ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(anes_ts_}\DecValTok{2016}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 1,842
+##   version V160001 V160001_orig V160101 V160101f V160101w V160102 V160102f
+##   <chr>     <dbl>        <dbl>   <dbl>    <dbl>    <dbl>   <dbl>    <dbl>
+## 1 ANES20~       1       300001   0.827    0.888        0   0.842    0.927
+## 2 ANES20~       2       300002   1.08     1.16         0   1.01     1.08 
+## 3 ANES20~       3       300003   0.388    0.416        0   0.367    0.398
+## 4 ANES20~       4       300004   0.360    0.385        0   0.366    0.418
+## 5 ANES20~       5       300006   0.647    0.693        0   0.646    0.726
+## 6 ANES20~       6       300007   0.706    0.759        0   0.688    0.725
+## # ... with 1,834 more variables: V160102w <dbl>, V160201 <dbl>, V160201f <dbl>,
+## #   V160201w <dbl>, V160202 <dbl>, V160202f <dbl>, V160202w <dbl>,
+## #   V160501 <dbl+lbl>, V160502 <dbl+lbl>, V161001 <dbl+lbl>, V161002 <dbl+lbl>,
+## #   V161003 <dbl+lbl>, V161004 <dbl+lbl>, V161005 <dbl+lbl>, V161006 <dbl+lbl>,
+## #   V161007 <dbl+lbl>, V161008 <dbl+lbl>, V161009 <dbl+lbl>,
+## #   V161010a <dbl+lbl>, V161010b <dbl+lbl>, V161010c <dbl+lbl>,
+## #   V161010d <dbl+lbl>, V161010e <chr>, V161010f <dbl>, V161011 <dbl+lbl>,
+## #   V161011a <dbl+lbl>, V161012 <dbl+lbl>, V161013a <dbl+lbl>,
+## #   V161013b <dbl+lbl>, V161014 <dbl+lbl>, V161015a <dbl+lbl>,
+## #   V161015b <dbl+lbl>, V161015c <dbl+lbl>, V161015d <dbl+lbl>,
+## #   V161015e <dbl+lbl>, V161016 <dbl+lbl>, V161017 <dbl+lbl>,
+## #   V161018 <dbl+lbl>, V161019 <dbl+lbl>, V161020 <dbl+lbl>, V161021 <dbl+lbl>,
+## #   V161021a <dbl+lbl>, V161022 <dbl+lbl>, V161022a <dbl+lbl>,
+## #   V161023 <dbl+lbl>, V161024x <dbl+lbl>, V161025 <dbl+lbl>,
+## #   V161025a <dbl+lbl>, V161025x <dbl+lbl>, V161026 <dbl+lbl>,
+## #   V161027 <dbl+lbl>, V161028 <dbl+lbl>, V161029a <dbl+lbl>,
+## #   V161029b <dbl+lbl>, V161030 <dbl+lbl>, V161031 <dbl+lbl>,
+## #   V161032 <dbl+lbl>, V161033 <dbl+lbl>, V161034 <dbl+lbl>, V161035 <dbl+lbl>,
+## #   V161036 <dbl+lbl>, V161037 <dbl+lbl>, V161038 <dbl+lbl>, V161039 <dbl+lbl>,
+## #   V161040 <dbl+lbl>, V161041 <dbl+lbl>, V161042 <dbl+lbl>, V161043 <dbl+lbl>,
+## #   V161044 <dbl+lbl>, V161045x <dbl+lbl>, V161046 <dbl+lbl>,
+## #   V161047 <dbl+lbl>, V161048 <dbl+lbl>, V161049 <dbl+lbl>, V161050 <dbl+lbl>,
+## #   V161051 <dbl+lbl>, V161052 <dbl+lbl>, V161053 <dbl+lbl>, V161054 <dbl+lbl>,
+## #   V161055 <dbl+lbl>, V161056 <dbl+lbl>, V161057 <dbl+lbl>, V161058 <dbl+lbl>,
+## #   V161059 <dbl+lbl>, V161060 <dbl+lbl>, V161061 <dbl+lbl>, V161062 <dbl+lbl>,
+## #   V161063 <dbl+lbl>, V161064x <dbl+lbl>, V161065x <dbl+lbl>,
+## #   V161066x <dbl+lbl>, V161067x <dbl+lbl>, V161068 <dbl+lbl>,
+## #   V161069 <dbl+lbl>, V161070a <dbl+lbl>, V161071 <dbl+lbl>,
+## #   V161072 <dbl+lbl>, V161073a <dbl+lbl>, V161074 <dbl+lbl>,
+## #   V161075 <dbl+lbl>, ...
+\end{verbatim}
+
+\hypertarget{process-variables-for-analysis}{%
+\subsubsection{Process variables for
+analysis}\label{process-variables-for-analysis}}
+
+For this project, I would start from the question of is there a
+relationship between voters' religious background and the party they
+would like to vote. I would concentrate on the two major parties,
+Democrat and republican, because they are always the candidates of the
+President election.
+
+Data process for Question 1 (Religious background - Vote Party):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Election_years =}\StringTok{ }\KeywordTok{as.character}\NormalTok{(}\KeywordTok{seq}\NormalTok{(}\DecValTok{1952}\NormalTok{, }\DecValTok{2016}\NormalTok{, }\DecValTok{4}\NormalTok{))}
+
+\NormalTok{Q1_data <-}\StringTok{ }\NormalTok{anes_ts_cdf }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+  \DataTypeTok{year =} \KeywordTok{as_factor}\NormalTok{(VCF0004),}
+  \DataTypeTok{vote =} \KeywordTok{as_factor}\NormalTok{(VCF0704),}
+  \DataTypeTok{religion =} \KeywordTok{as_factor}\NormalTok{(VCF0128)}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{%in%}\StringTok{ }\NormalTok{Election_years) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(vote, }\KeywordTok{c}\NormalTok{(}\StringTok{"Democrat"}\NormalTok{, }\StringTok{"Republican"}\NormalTok{)))}
+
+\KeywordTok{data.table}\NormalTok{(Q1_data }\OperatorTok{%>%}\StringTok{ }
+\StringTok{             }\KeywordTok{select}\NormalTok{(year, vote, religion) }\OperatorTok{%>%}
+\StringTok{             }\KeywordTok{sample_n}\NormalTok{(}\DecValTok{30}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     year          vote                                        religion
+##  1: 2012 2. Republican                                   1. Protestant
+##  2: 1984   1. Democrat                    2. Catholic [Roman Catholic]
+##  3: 2016   1. Democrat                                   1. Protestant
+##  4: 2012   1. Democrat                    2. Catholic [Roman Catholic]
+##  5: 2012 2. Republican                                       3. Jewish
+##  6: 2016 2. Republican                                   1. Protestant
+##  7: 1972 2. Republican                                   1. Protestant
+##  8: 1968 2. Republican                                   1. Protestant
+##  9: 1996   1. Democrat                                   1. Protestant
+## 10: 1984 2. Republican                                   1. Protestant
+## 11: 1960   1. Democrat                                   1. Protestant
+## 12: 1968 2. Republican                                   1. Protestant
+## 13: 1976   1. Democrat                                   1. Protestant
+## 14: 1980 2. Republican                                   1. Protestant
+## 15: 1980   1. Democrat                                   1. Protestant
+## 16: 2008   1. Democrat 4. Other and none (also includes DK preference)
+## 17: 2016 2. Republican                                   1. Protestant
+## 18: 2000 2. Republican                                   1. Protestant
+## 19: 1992   1. Democrat                                   1. Protestant
+## 20: 2012 2. Republican                                   1. Protestant
+## 21: 1956 2. Republican                                   1. Protestant
+## 22: 2012   1. Democrat 4. Other and none (also includes DK preference)
+## 23: 2016   1. Democrat                                   1. Protestant
+## 24: 1996   1. Democrat                                   1. Protestant
+## 25: 2016 2. Republican                                   1. Protestant
+## 26: 1976   1. Democrat 4. Other and none (also includes DK preference)
+## 27: 1972   1. Democrat                    2. Catholic [Roman Catholic]
+## 28: 2012   1. Democrat                                   1. Protestant
+## 29: 1972 2. Republican                                   1. Protestant
+## 30: 1956 2. Republican                                   1. Protestant
+##     year          vote                                        religion
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q1_data }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(year, vote, religion)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12,183 x 3
+##    year  vote          religion                    
+##    <fct> <fct>         <fct>                       
+##  1 1952  2. Republican 1. Protestant               
+##  2 1952  2. Republican 1. Protestant               
+##  3 1952  2. Republican 1. Protestant               
+##  4 1952  2. Republican 1. Protestant               
+##  5 1952  1. Democrat   1. Protestant               
+##  6 1952  2. Republican 1. Protestant               
+##  7 1952  1. Democrat   1. Protestant               
+##  8 1952  1. Democrat   2. Catholic [Roman Catholic]
+##  9 1952  2. Republican 1. Protestant               
+## 10 1952  1. Democrat   1. Protestant               
+## # ... with 12,173 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q1_data <-}\StringTok{ }\NormalTok{Q1_data }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(year, vote, religion)}
+
+\KeywordTok{save}\NormalTok{(Q1_data, }\DataTypeTok{file =} \StringTok{"../output/data_use.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+I am also interested in the relationship between Voters' education
+background and the party they would like to vote.
+
+Data process for Question 2 (Education Background - Vote Party):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q2_data <-}\StringTok{ }\NormalTok{anes_ts_cdf }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+  \DataTypeTok{year =} \KeywordTok{as_factor}\NormalTok{(VCF0004),}
+  \DataTypeTok{vote =} \KeywordTok{as_factor}\NormalTok{(VCF0704),}
+  \DataTypeTok{education =} \KeywordTok{as_factor}\NormalTok{(VCF0110)}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{%in%}\StringTok{ }\NormalTok{Election_years) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(vote, }\KeywordTok{c}\NormalTok{(}\StringTok{"Democrat"}\NormalTok{, }\StringTok{"Republican"}\NormalTok{)))}
+
+\KeywordTok{data.table}\NormalTok{(Q2_data }\OperatorTok{%>%}\StringTok{ }
+\StringTok{             }\KeywordTok{select}\NormalTok{(year, vote, education) }\OperatorTok{%>%}
+\StringTok{             }\KeywordTok{sample_n}\NormalTok{(}\DecValTok{30}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     year          vote                                             education
+##  1: 1988 2. Republican 2. High school (12 grades or fewer, incl. non-college
+##  2: 1960   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+##  3: 2012   1. Democrat     3. Some college (13 grades or more but no degree;
+##  4: 1960 2. Republican 2. High school (12 grades or fewer, incl. non-college
+##  5: 2012 2. Republican 2. High school (12 grades or fewer, incl. non-college
+##  6: 2008   1. Democrat     3. Some college (13 grades or more but no degree;
+##  7: 1988   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+##  8: 2012   1. Democrat         4. College or advanced degree (no cases 1948)
+##  9: 1988   1. Democrat     3. Some college (13 grades or more but no degree;
+## 10: 2016   1. Democrat         4. College or advanced degree (no cases 1948)
+## 11: 1960   1. Democrat     3. Some college (13 grades or more but no degree;
+## 12: 2000 2. Republican         4. College or advanced degree (no cases 1948)
+## 13: 1952   1. Democrat         4. College or advanced degree (no cases 1948)
+## 14: 1976   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 15: 2004   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 16: 1996 2. Republican     3. Some college (13 grades or more but no degree;
+## 17: 2000 2. Republican         4. College or advanced degree (no cases 1948)
+## 18: 1980 2. Republican     3. Some college (13 grades or more but no degree;
+## 19: 1980 2. Republican 2. High school (12 grades or fewer, incl. non-college
+## 20: 2000 2. Republican     3. Some college (13 grades or more but no degree;
+## 21: 1952 2. Republican 2. High school (12 grades or fewer, incl. non-college
+## 22: 1976   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 23: 1984 2. Republican     3. Some college (13 grades or more but no degree;
+## 24: 1988   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 25: 1976 2. Republican         4. College or advanced degree (no cases 1948)
+## 26: 1964   1. Democrat                  1. Grade school or less (0-8 grades)
+## 27: 2012   1. Democrat                                                  <NA>
+## 28: 2004 2. Republican     3. Some college (13 grades or more but no degree;
+## 29: 2016   1. Democrat         4. College or advanced degree (no cases 1948)
+## 30: 1952 2. Republican 2. High school (12 grades or fewer, incl. non-college
+##     year          vote                                             education
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q2_data }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(year, vote, education)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12,183 x 3
+##    year  vote          education                                            
+##    <fct> <fct>         <fct>                                                
+##  1 1952  2. Republican 2. High school (12 grades or fewer, incl. non-college
+##  2 1952  2. Republican 2. High school (12 grades or fewer, incl. non-college
+##  3 1952  2. Republican 1. Grade school or less (0-8 grades)                 
+##  4 1952  2. Republican 4. College or advanced degree (no cases 1948)        
+##  5 1952  1. Democrat   2. High school (12 grades or fewer, incl. non-college
+##  6 1952  2. Republican 1. Grade school or less (0-8 grades)                 
+##  7 1952  1. Democrat   2. High school (12 grades or fewer, incl. non-college
+##  8 1952  1. Democrat   1. Grade school or less (0-8 grades)                 
+##  9 1952  2. Republican 2. High school (12 grades or fewer, incl. non-college
+## 10 1952  1. Democrat   2. High school (12 grades or fewer, incl. non-college
+## # ... with 12,173 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q2_data <-}\StringTok{ }\NormalTok{Q2_data }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(year, vote, education)}
+
+\KeywordTok{save}\NormalTok{(Q2_data, }\DataTypeTok{file =} \StringTok{"../output/data_use.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Data process for new question:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{newQ_data <-}\StringTok{ }\NormalTok{anes_ts_cdf }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+  \DataTypeTok{year =} \KeywordTok{as_factor}\NormalTok{(VCF0004),}
+  \DataTypeTok{vote =} \KeywordTok{as_factor}\NormalTok{(VCF0704),}
+  \DataTypeTok{education =} \KeywordTok{as_factor}\NormalTok{(VCF0110),}
+  \DataTypeTok{religion =} \KeywordTok{as_factor}\NormalTok{(VCF0128)}
+\NormalTok{  ) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{%in%}\StringTok{ }\NormalTok{Election_years) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(vote, }\KeywordTok{c}\NormalTok{(}\StringTok{"Democrat"}\NormalTok{, }\StringTok{"Republican"}\NormalTok{)))}
+
+\KeywordTok{data.table}\NormalTok{(newQ_data }\OperatorTok{%>%}\StringTok{ }
+\StringTok{             }\KeywordTok{select}\NormalTok{(year, vote, education, religion) }\OperatorTok{%>%}
+\StringTok{             }\KeywordTok{sample_n}\NormalTok{(}\DecValTok{30}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     year          vote                                             education
+##  1: 2004 2. Republican         4. College or advanced degree (no cases 1948)
+##  2: 1956   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+##  3: 1980 2. Republican 2. High school (12 grades or fewer, incl. non-college
+##  4: 1976   1. Democrat                  1. Grade school or less (0-8 grades)
+##  5: 1952 2. Republican 2. High school (12 grades or fewer, incl. non-college
+##  6: 2012 2. Republican 2. High school (12 grades or fewer, incl. non-college
+##  7: 1956   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+##  8: 1988 2. Republican         4. College or advanced degree (no cases 1948)
+##  9: 2008   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 10: 1992 2. Republican                                                  <NA>
+## 11: 1988   1. Democrat         4. College or advanced degree (no cases 1948)
+## 12: 2008   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 13: 2012 2. Republican         4. College or advanced degree (no cases 1948)
+## 14: 1972 2. Republican 2. High school (12 grades or fewer, incl. non-college
+## 15: 1968   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 16: 1968   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 17: 2012 2. Republican 2. High school (12 grades or fewer, incl. non-college
+## 18: 2012 2. Republican         4. College or advanced degree (no cases 1948)
+## 19: 2016   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 20: 1960   1. Democrat         4. College or advanced degree (no cases 1948)
+## 21: 1996 2. Republican 2. High school (12 grades or fewer, incl. non-college
+## 22: 1984   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 23: 1996   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 24: 1964   1. Democrat                  1. Grade school or less (0-8 grades)
+## 25: 2016 2. Republican         4. College or advanced degree (no cases 1948)
+## 26: 2008   1. Democrat     3. Some college (13 grades or more but no degree;
+## 27: 1972   1. Democrat 2. High school (12 grades or fewer, incl. non-college
+## 28: 2016   1. Democrat     3. Some college (13 grades or more but no degree;
+## 29: 1972 2. Republican 2. High school (12 grades or fewer, incl. non-college
+## 30: 1980 2. Republican 2. High school (12 grades or fewer, incl. non-college
+##     year          vote                                             education
+##                                            religion
+##  1:                    2. Catholic [Roman Catholic]
+##  2:                    2. Catholic [Roman Catholic]
+##  3:                                   1. Protestant
+##  4:                                   1. Protestant
+##  5:                                   1. Protestant
+##  6:                    2. Catholic [Roman Catholic]
+##  7:                                   1. Protestant
+##  8:                                   1. Protestant
+##  9:                                   1. Protestant
+## 10: 4. Other and none (also includes DK preference)
+## 11:                    2. Catholic [Roman Catholic]
+## 12:                                   1. Protestant
+## 13:                                   1. Protestant
+## 14:                                   1. Protestant
+## 15:                                   1. Protestant
+## 16:                                   1. Protestant
+## 17:                                   1. Protestant
+## 18: 4. Other and none (also includes DK preference)
+## 19: 4. Other and none (also includes DK preference)
+## 20:                                       3. Jewish
+## 21: 4. Other and none (also includes DK preference)
+## 22:                                   1. Protestant
+## 23: 4. Other and none (also includes DK preference)
+## 24:                                   1. Protestant
+## 25: 4. Other and none (also includes DK preference)
+## 26:                                   1. Protestant
+## 27:                                   1. Protestant
+## 28: 4. Other and none (also includes DK preference)
+## 29: 4. Other and none (also includes DK preference)
+## 30:                                   1. Protestant
+##                                            religion
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{newQ_data }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(year, vote, education, religion)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 12,183 x 4
+##    year  vote        education                             religion             
+##    <fct> <fct>       <fct>                                 <fct>                
+##  1 1952  2. Republi~ 2. High school (12 grades or fewer, ~ 1. Protestant        
+##  2 1952  2. Republi~ 2. High school (12 grades or fewer, ~ 1. Protestant        
+##  3 1952  2. Republi~ 1. Grade school or less (0-8 grades)  1. Protestant        
+##  4 1952  2. Republi~ 4. College or advanced degree (no ca~ 1. Protestant        
+##  5 1952  1. Democrat 2. High school (12 grades or fewer, ~ 1. Protestant        
+##  6 1952  2. Republi~ 1. Grade school or less (0-8 grades)  1. Protestant        
+##  7 1952  1. Democrat 2. High school (12 grades or fewer, ~ 1. Protestant        
+##  8 1952  1. Democrat 1. Grade school or less (0-8 grades)  2. Catholic [Roman C~
+##  9 1952  2. Republi~ 2. High school (12 grades or fewer, ~ 1. Protestant        
+## 10 1952  1. Democrat 2. High school (12 grades or fewer, ~ 1. Protestant        
+## # ... with 12,173 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{newQ_data <-}\StringTok{ }\NormalTok{newQ_data }\OperatorTok{%>%}\StringTok{ }\KeywordTok{select}\NormalTok{(year, vote, education, religion)}
+
+\KeywordTok{save}\NormalTok{(newQ_data, }\DataTypeTok{file =} \StringTok{"../output/data_use.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{data-visualization}{%
+\section{3. Data Visualization}\label{data-visualization}}
+
+\hypertarget{q1-is-there-a-relationship-between-voters-religious-background-and-the-party-they-would-like-to-vote}{%
+\subsubsection{Q1: Is there a relationship between voters' religious
+background and the party they would like to
+vote?}\label{q1-is-there-a-relationship-between-voters-religious-background-and-the-party-they-would-like-to-vote}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{load}\NormalTok{(}\DataTypeTok{file =} \StringTok{"../output/data_use.RData"}\NormalTok{)}
+\NormalTok{Q1_plotdata <-}\StringTok{ }\NormalTok{Q1_data }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(religion, }\StringTok{"NA"}\NormalTok{))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, religion) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(vote) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, religion) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{prop =}\NormalTok{ n}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(n)}
+\NormalTok{  )}
+
+\KeywordTok{ggplot}\NormalTok{(Q1_plotdata,}
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ prop, }\DataTypeTok{fill =}\NormalTok{ vote)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{religion, }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}
+    \DataTypeTok{title =} \StringTok{"Relationship between votes' religious backgroup with their choice of party voting"}\NormalTok{,}
+    \DataTypeTok{y =} \StringTok{"proportion"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GR5243-Project-1_files/figure-latex/unnamed-chunk-6-1.pdf}
+By ignoring the fourth category of other and none, we focus on the three
+major regions in States. It is hard to find a trend in Jewish, but we
+could see a clearly upward trend of the proportions of voters who are
+Protestant or Catholic voting to Republican are increasing during the
+most three recent elections. Let us take a closer look of the line
+charts of the votes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(Q1_plotdata }\OperatorTok{%>%}\StringTok{ }
+\StringTok{         }\KeywordTok{filter}\NormalTok{(vote }\OperatorTok{==}\StringTok{ "2. Republican"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{         }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2008}\NormalTok{, }\DecValTok{2012}\NormalTok{, }\DecValTok{2016}\NormalTok{)) }\OperatorTok{%>%}
+\StringTok{         }\KeywordTok{filter}\NormalTok{(religion }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"1. Protestant"}\NormalTok{, }\StringTok{"2. Catholic [Roman Catholic]"}\NormalTok{)),}
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ prop, }\DataTypeTok{group =}\NormalTok{ religion, }\DataTypeTok{color =}\NormalTok{ religion)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}
+    \DataTypeTok{title =} \StringTok{"Trends of voters who are Protestant or Catholic voting to Republican "}\NormalTok{,}
+    \DataTypeTok{y =} \StringTok{"proportion of votes to Republican"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GR5243-Project-1_files/figure-latex/unnamed-chunk-7-1.pdf}
+Let us put this interesting finding aside for a moment, because I am
+also interested in if there exist any relationship between voters'
+education background and the party they support.
+
+\hypertarget{q2-is-there-a-relationship-between-voters-education-background-and-the-party-they-would-like-to-vote}{%
+\subsubsection{Q2: Is there a relationship between voters' education
+background and the party they would like to
+vote?}\label{q2-is-there-a-relationship-between-voters-education-background-and-the-party-they-would-like-to-vote}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Q2_plotdata <-}\StringTok{ }\NormalTok{Q2_data }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(education, }\StringTok{"NA"}\NormalTok{))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, education) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(vote) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, education) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{prop =}\NormalTok{ n}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(n)}
+\NormalTok{  )}
+
+\KeywordTok{ggplot}\NormalTok{(Q2_plotdata,}
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ prop, }\DataTypeTok{fill =}\NormalTok{ vote)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_manual}\NormalTok{(}\DataTypeTok{values=}\KeywordTok{c}\NormalTok{(}\StringTok{"steelblue2"}\NormalTok{, }\StringTok{"red3"}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\StringTok{ }\NormalTok{education, }\DataTypeTok{ncol =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}
+    \DataTypeTok{title =} \StringTok{"Relationship between votes' education backgroup with their choice of party voting"}\NormalTok{,}
+    \DataTypeTok{y =} \StringTok{"proportion"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GR5243-Project-1_files/figure-latex/unnamed-chunk-8-1.pdf}
+By viewing the bar chart above, we cannot find a significant trend for
+education level under college or advanced degree. However, there is a
+obvious trend for the college or advanced degree, and this group of
+people are more and more likely to vote for the Democrat. Also, let us
+take a close look at the vote result in the most three recent elections.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(Q2_plotdata }\OperatorTok{%>%}\StringTok{ }
+\StringTok{         }\KeywordTok{filter}\NormalTok{(vote }\OperatorTok{==}\StringTok{ "2. Republican"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{         }\KeywordTok{filter}\NormalTok{(year }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{2008}\NormalTok{, }\DecValTok{2012}\NormalTok{, }\DecValTok{2016}\NormalTok{)),}
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ prop, }\DataTypeTok{group =}\NormalTok{ education, }\DataTypeTok{color =}\NormalTok{ education)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}
+    \DataTypeTok{title =} \StringTok{"Trends of voters with different education level voting to Republican "}\NormalTok{,}
+    \DataTypeTok{y =} \StringTok{"proportion of votes to Republican"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GR5243-Project-1_files/figure-latex/unnamed-chunk-9-1.pdf}
+According to the line plot above, we can clearly see a upward trend of
+the proportion of voters voting to republican, who have weaker education
+background.
+
+The similar upward trends of the support rating for Republican from
+people with weaker education background and people who are Protestant or
+Catholic make me wondering if there exist any correlation between these
+two group of people.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{newQ_plotdata <-}\StringTok{ }\NormalTok{newQ_data }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(education, }\StringTok{"NA"}\NormalTok{))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\NormalTok{(}\KeywordTok{str_detect}\NormalTok{(religion, }\StringTok{"NA"}\NormalTok{))) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(education) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(religion) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(education) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{prop =}\NormalTok{ n}\OperatorTok{/}\KeywordTok{sum}\NormalTok{(n)}
+\NormalTok{  )}
+
+\KeywordTok{ggplot}\NormalTok{(newQ_plotdata,}
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ education, }\DataTypeTok{y =}\NormalTok{ prop, }\DataTypeTok{fill =}\NormalTok{ religion)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_bar}\NormalTok{(}\DataTypeTok{stat =} \StringTok{"identity"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_discrete}\NormalTok{(}\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"0-8 grades"}\NormalTok{, }\StringTok{"High school"}\NormalTok{, }\StringTok{"Some College"}\NormalTok{, }\StringTok{"College or higher"}\NormalTok{), }
+                   \DataTypeTok{guide =} \KeywordTok{guide_axis}\NormalTok{(}\DataTypeTok{n.dodge =} \DecValTok{2}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}
+    \DataTypeTok{title =} \StringTok{""}\NormalTok{,}
+    \DataTypeTok{y =} \StringTok{"proportion"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GR5243-Project-1_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+Let's take a closer look of the line chart.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(newQ_plotdata }\OperatorTok{%>%}
+\StringTok{         }\KeywordTok{filter}\NormalTok{(religion }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"1. Protestant"}\NormalTok{, }\StringTok{"2. Catholic [Roman Catholic]"}\NormalTok{)),}
+       \KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ education, }\DataTypeTok{y =}\NormalTok{ prop, }\DataTypeTok{group =}\NormalTok{ religion, }\DataTypeTok{color =}\NormalTok{ religion)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_discrete}\NormalTok{(}\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"0-8 grades"}\NormalTok{, }\StringTok{"High school"}\NormalTok{, }\StringTok{"Some College"}\NormalTok{, }\StringTok{"College or higher"}\NormalTok{), }
+                   \DataTypeTok{guide =} \KeywordTok{guide_axis}\NormalTok{(}\DataTypeTok{n.dodge =} \DecValTok{2}\NormalTok{)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_classic}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}
+    \DataTypeTok{title =} \StringTok{""}\NormalTok{,}
+    \DataTypeTok{y =} \StringTok{"proportion"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{GR5243-Project-1_files/figure-latex/unnamed-chunk-11-1.pdf}
+There is no obvious relationship between voters being Catholic and
+education, but we could find the obvious negative relationship between
+voters being a Protestant and the education background. People with
+weaker education background are tend to be a Protestant.
+
+Conclusion:
+
+\end{document}
